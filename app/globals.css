@@ -6,3 +6,20 @@ body {
   color: #1a2a1f;
   font-family: var(--font-bangla), sans-serif;
 }
+
+@keyframes ticker {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+.ticker-track {
+  animation: ticker 120s linear infinite;
+}
+
+.ticker-track:hover {
+  animation-play-state: paused;
+}
