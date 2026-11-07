@@ -35,7 +35,7 @@ export default function Navbar({ categories }) {
           </Link>
           <Link
             href="/signup"
-            className="btn btn-success text-white btn-sm sm:btn-md"
+            className="btn border-none bg-green-600 text-white hover:bg-green-700 btn-sm sm:btn-md"
           >
             সাইন আপ
           </Link>
