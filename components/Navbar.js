@@ -1,10 +1,14 @@
 "use client";
 
 import Link from "next/link";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
+import toast from "react-hot-toast";
+import { authClient } from "@/lib/auth-client";
 
 export default function Navbar({ categories }) {
   const pathname = usePathname();
+  const router = useRouter();
+  const { data: session, isPending } = authClient.useSession();
 
   const today = new Date().toLocaleDateString("bn-BD", {
     weekday: "long",
@@ -13,6 +17,13 @@ export default function Navbar({ categories }) {
     year: "numeric",
     timeZone: "Asia/Dhaka",
   });
+
+  async function handleSignOut() {
+    await authClient.signOut();
+    toast.success("সফলভাবে সাইন আউট হয়েছে");
+    router.push("/");
+    router.refresh();
+  }
 
   return (
     <header className="bg-white border-b border-gray-200">
@@ -30,15 +41,60 @@ export default function Navbar({ categories }) {
         </Link>
 
         <div className="flex items-center gap-2">
-          <Link href="/signin" className="btn btn-ghost btn-sm sm:btn-md">
-            সাইন ইন
-          </Link>
-          <Link
-            href="/signup"
-            className="btn border-none bg-green-600 text-white hover:bg-green-700 btn-sm sm:btn-md"
-          >
-            সাইন আপ
-          </Link>
+          {isPending ? (
+            <div className="skeleton h-9 w-28"></div>
+          ) : session ? (
+            <div className="dropdown dropdown-end">
+              <div
+                tabIndex={0}
+                role="button"
+                className="flex items-center gap-2 cursor-pointer"
+              >
+                <div className="w-9 h-9 rounded-full bg-green-100 text-green-700 font-bold flex items-center justify-center overflow-hidden">
+                  {session.user.image ? (
+                    <img
+                      src={session.user.image}
+                      alt={session.user.name}
+                      className="w-full h-full object-cover"
+                    />
+                  ) : (
+                    session.user.name?.charAt(0)
+                  )}
+                </div>
+                <span className="hidden sm:inline text-sm font-medium">
+                  {session.user.name}
+                </span>
+              </div>
+              <ul
+                tabIndex={0}
+                className="dropdown-content menu bg-white rounded-xl shadow border border-gray-200 w-56 p-2 mt-2 z-50"
+              >
+                <li className="px-3 py-1 text-xs text-gray-500">
+                  {session.user.email}
+                </li>
+                <li>
+                  <Link href="/profile">আমার প্রোফাইল</Link>
+                </li>
+                <li>
+                  <button onClick={handleSignOut} className="text-red-600">
+                    সাইন আউট
+                  </button>
+                </li>
+              </ul>
+            </div>
+          ) : (
+            <>
+              <Link href="/signin" className="btn btn-ghost btn-sm sm:btn-md">
+                সাইন ইন
+              </Link>
+              <Link
+                href="/signup"
+                className="btn border-none bg-green-600 text-white hover:bg-green-700 btn-sm sm:btn-md"
+              >
+                সাইন আপ
+              </Link>
+            </>
+          )}
         </div>
       </div>
 

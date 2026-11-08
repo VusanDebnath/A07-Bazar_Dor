@@ -4,6 +4,7 @@ import Navbar from "@/components/Navbar";
 import PriceTicker from "@/components/PriceTicker";
 import Footer from "@/components/Footer";
 import { getProducts } from "@/lib/api";
+import ToastProvider from "@/components/ToastProvider";
 
 const bangla = Hind_Siliguri({
   subsets: ["bengali", "latin"],
@@ -34,6 +35,7 @@ export default async function RootLayout({ children }) {
   return (
     <html lang="bn" data-theme="light">
       <body className={`${bangla.variable} min-h-screen flex flex-col`}>
+        <ToastProvider />
         <Navbar categories={categories} />
         <PriceTicker products={products} />
         <main className="flex-1">{children}</main>
