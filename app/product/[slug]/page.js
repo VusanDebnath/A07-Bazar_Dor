@@ -1,10 +1,21 @@
-import Link from "next/link";
-import { getProducts } from "@/lib/api";
-import { formatPrice, formatAvg, unitBn, changeInfo, toBn } from "@/lib/format";
 import NotFoundView from "@/components/NotFoundView";
+import { getProducts } from "@/lib/api";
+import { changeInfo, formatAvg, formatPrice, unitBn } from "@/lib/format";
+import Link from "next/link";
+
+import { auth } from "@/lib/auth";
+import { headers } from "next/headers";
+import { redirect } from "next/navigation";
 
 export default async function ProductPage({ params }) {
   const { slug } = await params;
+
+  const session = await auth.api.getSession({ headers: await headers() });
+  if (!session) {
+    redirect(
+      `/signin?reason=login&callbackUrl=${encodeURIComponent(`/product/${slug}`)}`,
+    );
+  }
 
   const all = await getProducts();
   const product = all.find((p) => p.slug === slug);

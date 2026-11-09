@@ -2,12 +2,13 @@
 
 import toast from "react-hot-toast";
 import { authClient } from "@/lib/auth-client";
+import { getCallbackUrl } from "@/lib/redirect";
 
 export default function SocialButtons() {
   async function handleSocial(provider) {
     const { error } = await authClient.signIn.social({
       provider,
-      callbackURL: "/",
+      callbackURL: getCallbackUrl(),
     });
     if (error) {
       toast.error(error.message || "সাইন ইন করা যায়নি, আবার চেষ্টা করুন");

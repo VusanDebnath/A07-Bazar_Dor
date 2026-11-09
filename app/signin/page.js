@@ -1,16 +1,25 @@
 "use client";
 
-import { useState } from "react";
+import SocialButtons from "@/components/SocialButtons";
+import { authClient } from "@/lib/auth-client";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
+import { useEffect, useState } from "react";
 import toast from "react-hot-toast";
-import { authClient } from "@/lib/auth-client";
-import SocialButtons from "@/components/SocialButtons";
+import { getCallbackUrl } from "@/lib/redirect";
 
 export default function SignInPage() {
   const router = useRouter();
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
+  useEffect(() => {
+    const params = new URLSearchParams(window.location.search);
+    if (params.get("reason") === "login") {
+      toast.error("বিস্তারিত দেখতে আগে সাইন ইন করুন", {
+        id: "login-required",
+      });
+    }
+  }, []);
 
   async function handleSubmit(e) {
     e.preventDefault();
@@ -32,7 +41,7 @@ export default function SignInPage() {
     }
 
     toast.success("সফলভাবে সাইন ইন হয়েছে");
-    router.push("/");
+    router.push(getCallbackUrl());
     router.refresh();
   }
 
@@ -79,7 +88,7 @@ export default function SignInPage() {
         </button>
 
         <SocialButtons />
-        
+
         <p className="text-sm text-center">
           অ্যাকাউন্ট নেই?{" "}
           <Link href="/signup" className="text-green-600 font-medium">
