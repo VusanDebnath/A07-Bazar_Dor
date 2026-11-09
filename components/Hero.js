@@ -1,3 +1,5 @@
+import HeroIllustration from "./HeroIllustration";
+
 export default function Hero() {
   const today = new Date().toLocaleDateString("bn-BD", {
     weekday: "long",
@@ -28,7 +30,7 @@ export default function Hero() {
         </a>
       </div>
 
-      <div className="text-9xl md:text-[10rem]">🧺</div>
+      <HeroIllustration />
     </section>
   );
 }

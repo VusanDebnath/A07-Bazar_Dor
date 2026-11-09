@@ -1,36 +1,59 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# 🛒 বাজার দর (BazarDor)
 
-## Getting Started
+**প্রয়োজনীয় পণ্যের দাম এক নজরে।**
 
-First, run the development server:
+বাজার দর একটি ওয়েব অ্যাপ, যেখানে চাল, ডাল, তেল, সবজি, মাছ, মাংস, ডিম-দুধ ও মসলার আজকের দাম, দামের পরিবর্তন এবং বিভিন্ন বাজারের সর্বনিম্ন, সর্বাধিক ও গড় দাম এক জায়গায় দেখা যায়।
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+🔗 **Live Link:** 
+📦 **GitHub:** https://github.com/VusanDebnath/A07-Bazar_Dor
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## ✨ Key Features
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+1. **আজকের বাজারদর এক নজরে:** Hero সেকশন, চলমান দামের ticker, আর "আজ দাম বেড়েছে / কমেছে" তালিকা।
+2. **Category অনুযায়ী পণ্য:** প্রতিটি category-র আলাদা পেজ এবং active category হাইলাইট।
+3. **দাম অনুযায়ী Sort:** ডিফল্ট, কম থেকে বেশি, বেশি থেকে কম। সংখ্যা হিসেবে সঠিকভাবে সাজায়, বাংলা সংখ্যায় দেখায়।
+4. **বাজারভিত্তিক বিস্তারিত দাম:** প্রতিটি পণ্যের সর্বনিম্ন, সর্বাধিক ও গড় দাম, সাথে ১২টি বাজারের টেবিল (login করা user-এর জন্য)।
+5. **Authentication:** BetterAuth দিয়ে Email/Password, Google এবং GitHub login, সাথে toast বার্তা।
+6. **Protected route:** Product Details আর Profile পেজ login ছাড়া খোলা যায় না।
+7. **প্রোফাইল আপডেট:** My Profile পেজ থেকে নাম বদলানো যায়।
+8. **Responsive design:** মোবাইল, ট্যাবলেট ও ডেস্কটপে সঠিকভাবে কাজ করে। Loading skeleton ও 404 পেজ আছে।
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## 🛠️ Technologies Used
 
-## Learn More
+| প্রযুক্তি | ব্যবহার |
+|---|---|
+| Next.js (App Router) | UI ও পেজ নেভিগেশন |
+| Tailwind CSS + DaisyUI | স্টাইলিং ও responsive design |
+| BetterAuth | Authentication (Email, Google, GitHub) |
+| MongoDB Atlas | ব্যবহারকারীর ডেটা |
+| react-hot-toast | Toast notification |
+| JavaScript | প্রোগ্রামিং ভাষা |
+| Vercel | Deployment |
 
-To learn more about Next.js, take a look at the following resources:
+## 🚀 Run Locally
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+1. Repository clone করুন:
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+   `git clone https://github.com/VusanDebnath/A07-Bazar_Dor.git`
 
-## Deploy on Vercel
+2. প্রজেক্ট ফোল্ডারে গিয়ে প্যাকেজ ইনস্টল করুন:
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+   `npm install`
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+3. প্রজেক্টের root-এ `.env.local` ফাইল বানিয়ে নিচের চাবিগুলো দিন:
+
+   - `MONGODB_URI`
+   - `BETTER_AUTH_SECRET`
+   - `BETTER_AUTH_URL` (যেমন `http://localhost:3000`)
+   - `GOOGLE_CLIENT_ID`, `GOOGLE_CLIENT_SECRET`
+   - `GITHUB_CLIENT_ID`, `GITHUB_CLIENT_SECRET`
+
+4. Server চালু করুন:
+
+   `npm run dev`
+
+5. ব্রাউজারে `http://localhost:3000` খুলুন।
+
+## 🌐 API
+
+পণ্যের ডেটা এই API থেকে আসে: `https://openapi.programming-hero.com/api/bazardor`

@@ -4,7 +4,7 @@
 body {
   background: #f1f5f0;
   color: #1a2a1f;
-  font-family: var(--font-bangla), sans-serif;
+    font-family: var(--font-bangla), var(--font-emoji), sans-serif;
 }
 
 @keyframes ticker {

@@ -1,4 +1,4 @@
-import { Hind_Siliguri } from "next/font/google";
+import { Hind_Siliguri, Noto_Color_Emoji } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/Navbar";
 import PriceTicker from "@/components/PriceTicker";
@@ -10,6 +10,12 @@ const bangla = Hind_Siliguri({
   subsets: ["bengali", "latin"],
   weight: ["400", "500", "600", "700"],
   variable: "--font-bangla",
+});
+
+const emoji = Noto_Color_Emoji({
+  subsets: ["emoji"],
+  weight: "400",
+  variable: "--font-emoji",
 });
 
 export const metadata = {
@@ -34,7 +40,7 @@ export default async function RootLayout({ children }) {
 
   return (
     <html lang="bn" data-theme="light">
-      <body className={`${bangla.variable} min-h-screen flex flex-col`}>
+            <body className={`${bangla.variable} ${emoji.variable} min-h-screen flex flex-col`}>
         <ToastProvider />
         <Navbar categories={categories} />
         <PriceTicker products={products} />
