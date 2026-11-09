@@ -55,6 +55,7 @@ export default function Navbar({ categories }) {
                     <img
                       src={session.user.image}
                       alt={session.user.name}
+                      referrerPolicy="no-referrer"
                       className="w-full h-full object-cover"
                     />
                   ) : (
