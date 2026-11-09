@@ -4,7 +4,7 @@
 
 বাজার দর একটি ওয়েব অ্যাপ, যেখানে চাল, ডাল, তেল, সবজি, মাছ, মাংস, ডিম-দুধ ও মসলার আজকের দাম, দামের পরিবর্তন এবং বিভিন্ন বাজারের সর্বনিম্ন, সর্বাধিক ও গড় দাম এক জায়গায় দেখা যায়।
 
-🔗 **Live Link:** 
+🔗 **Live Link:** https://a07-bazar-dor-murex.vercel.app
 📦 **GitHub:** https://github.com/VusanDebnath/A07-Bazar_Dor
 
 ## ✨ Key Features
